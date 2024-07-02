@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClink}
       disabled={disabled}
       className={`relative disabled: opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-90 transition w-full 
-        ${outline ? "bg-white" : "bg-blue-600"}
+        ${outline ? "bg-white border border-gray-300" : "bg-blue-600"}
         ${outline ? "border-gray-800" : "border-blue-600"}
         ${outline ? "text-black" : "text-white"}
         ${small ? "py-1" : "py-3"}

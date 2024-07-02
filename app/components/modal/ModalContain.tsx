@@ -42,7 +42,7 @@ const ModalContain: React.FC<ModalProps> = ({
     setShowModal(false);
     setTimeout(() => {
       onClose();
-    }, 600);
+    }, 300);
   }, [disabled, onClose]);
 
   const handleSubmit = useCallback(() => {
@@ -59,13 +59,22 @@ const ModalContain: React.FC<ModalProps> = ({
     secondaryAction();
   }, [disabled, secondaryAction]);
 
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   if (!isOpen) {
     return null;
   }
 
   return (
     <>
-      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
+      <div
+        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70"
+        onClick={handleOverlayClick}
+      >
         <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
           {/* Content Modal */}
           <div
@@ -82,7 +91,7 @@ const ModalContain: React.FC<ModalProps> = ({
               <div className="flex items-center p-6 rounded-t justify-center relative ">
                 <button
                   onClick={handleClose}
-                  className="p-1 border-0 hover:opacity-60 transition absolute left-9"
+                  className="p-1 border-0 hover:opacity-60 transition absolute right-9"
                 >
                   <IoMdClose />
                 </button>
@@ -102,14 +111,13 @@ const ModalContain: React.FC<ModalProps> = ({
                       onClink={handleSecondaryAction}
                     />
                   )}
-                  {actionLabel && (
-                    <Button
-                      disabled={disabled}
-                      label={actionLabel}
-                      onClink={handleSubmit}
-                    />
-                  )}
+                  <Button
+                    disabled={disabled}
+                    label={actionLabel}
+                    onClink={handleSubmit}
+                  />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
