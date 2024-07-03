@@ -1,8 +1,6 @@
 "use client";
 import { signIn } from "next-auth/react";
-import axios from "axios";
 import React from "react";
-import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -14,6 +12,7 @@ import { Button } from "../Button";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { useRouter } from "next/navigation";
+import Spiner from "../Spiner";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -27,7 +26,7 @@ const LoginModal = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
+      email: "",
       password: "",
     },
   });
@@ -95,12 +94,12 @@ const LoginModal = () => {
       />
       <div className="text-neutral-600 text-center justify-center mt-4 font-light">
         <div className="flex flex-row justify-center items-center gap-2">
-          <div>Create an account</div>
+          <div>first time using this app?</div>
           <div
             onClick={hanlleRegisterInLoginPage}
             className="text-black cursor-pointer hover:underline"
           >
-            Register
+            Create an account
           </div>
         </div>
       </div>
@@ -115,7 +114,7 @@ const LoginModal = () => {
       actionLabel="Continue"
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
-      body={bodyContent}
+      body={isLoading ? <Spiner /> : bodyContent}
       footer={footerContent}
     />
   );

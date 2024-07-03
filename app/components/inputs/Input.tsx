@@ -50,6 +50,7 @@ const Input: React.FC<InputProps> = ({
           peer
           w-full
           p-4
+          mb-5
           pt-6
           font-light
           bg-white

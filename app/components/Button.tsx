@@ -4,7 +4,7 @@ import React from "react";
 
 interface ButtonProps {
   label: string;
-  onClink: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   outline?: boolean;
   small?: boolean;
@@ -13,7 +13,7 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({
   label,
-  onClink,
+  onClick,
   disabled,
   outline,
   small,
@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      onClick={onClink}
+      onClick={onClick}
       disabled={disabled}
       className={`relative disabled: opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-90 transition w-full 
         ${outline ? "bg-white border border-gray-300" : "bg-blue-600"}
