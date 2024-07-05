@@ -5,9 +5,10 @@ import React from "react";
 interface MenuItemProps {
   onClick: () => void;
   name: string;
+  body?: React.ReactElement;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ onClick, name }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ onClick, name, body }) => {
   return (
     <div
       onClick={onClick}

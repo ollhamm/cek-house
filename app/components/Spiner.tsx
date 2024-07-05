@@ -6,7 +6,7 @@ const Spiner = () => {
       <div className="loader"></div>
       <style jsx>{`
         .loader {
-          border: 10px solid rgba(0, 0, 0, 0.1);
+          border: 6px solid rgba(0, 0, 0, 0.1);
           border-left-color: #3b82f6;
           border-radius: 50%;
           width: 60px;

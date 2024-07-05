@@ -14,6 +14,7 @@ import Input from "../inputs/Input";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Spiner from "../Spiner";
 
 enum STEPS {
   CATEGORY = 0,
@@ -29,6 +30,7 @@ const RentModal = () => {
   const rentModal = useRentModal();
   const [step, setStep] = useState(STEPS.CATEGORY);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
 
   const {
     register,
@@ -83,7 +85,7 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    setIsLoading(true);
+    setIsCreating(true);
 
     axios
       .post("api/listings", data)
@@ -98,7 +100,7 @@ const RentModal = () => {
         toast.error("Something went wrong");
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsCreating(false);
       });
   };
 
@@ -258,7 +260,7 @@ const RentModal = () => {
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={secondaryActionLabel ? onBack : undefined}
       actionLabel={actionLabel}
-      body={bodyContent}
+      body={isCreating ? <Spiner /> : bodyContent}
     />
   );
 };
